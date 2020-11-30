@@ -1,0 +1,63 @@
+﻿@model List<Web.Models.ViewModel.IglesiaViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sistema de Gestion de Miembros de la Iglesia</h2>
+
+<div style="text-align:right">
+    <a href="@Url.Action("Create","Iglesia")/0"><i class="fas fa-plus-square fa-lg"></i></a>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table ">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Foto</th>
+                        <th>Sexo</th>
+                        <th>Nombre Completo</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Ciudad de Nacimiento</th>
+                        <th>Pais de Residencia Actual</th>
+                        <th>Telefono</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                
+                        <td>@item.Id_Iglesia</td>
+                        <td><img src="@Url.Action("ConvertImagen","Iglesia", new { id= item.Id_Iglesia })" width="50px" height="50px" alt="foto"></td>
+                        <td>@item.Sexo_DP</td>
+                        <td>@item.Nombres_DP @item.Apellidos_DP</td>
+                        <td>@item.FechaNacimiento_DP</td>
+                        <td>@item.CiudadNacimiento_DP</td>
+                        <td>@item.PaisResidenciaActual_DP</td>
+                        <td>@item.Telefono_DP</td>
+                        <td></td>
+
+
+
+                        <td>
+                            <a class="btn btn-success" href="@Url.Action("Create","Iglesia")/@item.Id_Iglesia"><i class="fa fa-pencil fa-lg"></i></a>
+                            <a class="btn btn-danger" href="@Url.Action("Eliminar","Iglesia")/@item.Id_Iglesia"><i class="fa fa-trash-o fa-lg"></i></a>
+                            <a class="btn btn-primary" href="@Url.Action("Ver","Iglesia")/@item.Id_Iglesia"><i class="fa fa-eye fa-lg"></i></a>
+                        </td>
+                    </tr>
+
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>

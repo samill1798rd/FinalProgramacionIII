@@ -1,0 +1,493 @@
+﻿@model Web.Models.ViewModel.IglesiaViewModel
+@{
+    ViewBag.Title = "Crear";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Save", "Iglesia", FormMethod.Post, new { enctype = "multipart/form-data", id = "regForm" }))
+    {
+        @Html.HiddenFor(d =>d.Id_Iglesia)
+        <!-- One "tab" for each step in the form: -->
+    <div class="tab">
+        <div>
+            <h3>Datos Personales</h3>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Sexo_DP)
+            <br />
+            <label class="radio-inline">
+                Mujer
+                @Html.RadioButtonFor(d => d.Sexo_DP, "Mujer")
+            </label>
+            <label class="radio-inline">
+                Hombre
+                @Html.RadioButtonFor(d => d.Sexo_DP, "Hombre")
+            </label>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Apellidos_DP)
+            @Html.TextBoxFor(d => d.Apellidos_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Nombres_DP)
+            @Html.TextBoxFor(d => d.Nombres_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.FechaNacimiento_DP)
+            @Html.EditorFor(d => d.FechaNacimiento_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.PaisNacimiento_DP1)
+            @Html.DropDownListFor(d => d.PaisNacimiento_DP1, Model.DdlPaises, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.CiudadNacimiento_DP)
+            @Html.TextBoxFor(d => d.CiudadNacimiento_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.PaisResidenciaActual_DP)
+            @Html.DropDownListFor(d => d.PaisResidenciaActual_DP, Model.DdlPaises, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.CiudadResidneciaActual_DP)
+            @Html.TextBoxFor(d => d.CiudadResidneciaActual_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Direccion_DP)
+            @Html.TextAreaFor(d => d.Direccion_DP, new { placeholder = "Provincia/Sector/Calle/ No. de Vivienda", @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Telefono_DP)
+            @Html.TextBoxFor(d => d.Telefono_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Celular_DP)
+            @Html.TextBoxFor(d => d.Celular_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Correo_DP)
+            @Html.TextBoxFor(d => d.Correo_DP, new { @class = "form-control" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.TipoIdentidad_DP)
+            <br />
+            <label class="radio-inline">
+                Cedula
+                @Html.RadioButtonFor(d => d.TipoIdentidad_DP, "Cedula")
+            </label>
+            <BR />
+            <label class="radio-inline">
+                Pasaporte
+                @Html.RadioButtonFor(d => d.TipoIdentidad_DP, "Pasaporte")
+            </label>
+            <BR />
+            <label class="radio-inline">
+                DNI
+                @Html.RadioButtonFor(d => d.TipoIdentidad_DP, "DNI")
+            </label>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.DocumentoIdentidad_DP)
+            @Html.TextBoxFor(d => d.DocumentoIdentidad_DP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Adjuntar Foto</label>
+            <input type="file" name="file" value="" />
+        </div>
+    </div>
+
+        <div class="tab">
+            <div>
+                <h3>Datos Familiares</h3>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.EstadoCivil_DF)
+                <br />
+                Casado
+                @Html.RadioButtonFor(d => d.EstadoCivil_DF, "Casado")
+                Soltero
+                @Html.RadioButtonFor(d => d.EstadoCivil_DF, "Soltero")
+
+            </div>
+            <div id="divPareja">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.NombrePareja_DF)
+                    @Html.TextBoxFor(d => d.NombrePareja_DF, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.Hijos_DF)
+                <br />
+                Si
+                @Html.RadioButtonFor(d => d.Hijos_DF, "Si")
+                No
+                @Html.RadioButtonFor(d => d.Hijos_DF, "No")
+            </div>
+            <div id="divNoHijos">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.NoHijos_DF)
+                    @Html.TextBoxFor(d => d.NoHijos_DF, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="tab">
+            <div>
+                <h3>Datos Laborales</h3>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.Profesion_DL)
+                @Html.TextBoxFor(d => d.Profesion_DL, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.OcupacionActual_DL)
+                @Html.TextBoxFor(d => d.OcupacionActual_DL, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.NombreEmpresa_DL)
+                @Html.TextBoxFor(d => d.NombreEmpresa_DL, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.EmpresaTelefono_DL)
+                @Html.TextBoxFor(d => d.EmpresaTelefono_DL, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="tab">
+            <div>
+                <h3>Datos Eclesiasticos</h3>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.FechaConvencion_DE)
+                @Html.EditorFor(d => d.FechaConvencion_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.FechaBautismo_DE)
+                @Html.EditorFor(d => d.FechaBautismo_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.FechaAceptado_DE)
+                @Html.EditorFor(d => d.FechaAceptado_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.Denominacion_DE)
+                <br />
+                <label class="radio-inline">
+                    Bautista
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Bautista")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Pentecostal
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Pentecostal")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Metodista
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Metodista")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Catolica
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Catolica")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Presbiteriana
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Presbiteriana")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Adventista
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Adventista")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Templo Bilbico
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Templo Bilbico")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Menonita
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Menonita")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Luterana
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Luterana")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Otra
+                    @Html.RadioButtonFor(d => d.Denominacion_DE, "Otra")
+                </label>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.NombreIglesiaActual_DE)
+                @Html.TextBoxFor(d => d.NombreIglesiaActual_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.IglesiaMenorTiempo_DE)
+                <br />
+                Si
+                @Html.RadioButtonFor(d => d.IglesiaMenorTiempo_DE, "Si")
+                No
+                @Html.RadioButtonFor(d => d.IglesiaMenorTiempo_DE, "No")
+            </div>
+            <div class="form-group">
+                <div id="divIglesiaAntes">
+                    @Html.LabelFor(d => d.IglesiaAnterior_DE)
+                    @Html.TextBoxFor(d => d.IglesiaAnterior_DE, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.PastorActual_DE)
+                @Html.TextBoxFor(d => d.PastorActual_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.SidoDisciplenado_DE)
+                <br />
+                Si
+                @Html.RadioButtonFor(d => d.SidoDisciplenado_DE, "Si")
+                No
+                @Html.RadioButtonFor(d => d.SidoDisciplenado_DE, "No")
+            </div>
+            <div id="divDiciplina">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.DisciplinaVeces_DE)
+                    @Html.TextBoxFor(d => d.DisciplinaVeces_DE, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(d => d.DisciplinaCausas_DE)
+                    @Html.TextBoxFor(d => d.DisciplinaCausas_DE, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.FuncionesOcupadaActural_DE)
+                <br />
+                <label class="radio-inline">
+                    Pastor
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Pastor")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Anciano
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Anciano")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Diacono
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Diacono")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Misionero
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Misionero")
+                </label>
+                <BR />
+                <label class="radio-inline">
+                    Lider Escuela Dominical
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Lider Escuela Dominical")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Lider Minist. de Jovenes
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, " Lider Minist. de Jovenes")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Lider Minist. de Caballeros
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Lider Minist. de Caballeros")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Lider Minist. de Damas
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Lider Minist. de Damas")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Lider Minist. de Ninos
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Lider Minist. de Ninos")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Lider Minist. de Matrimonios
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Lider Minist. de Matrimonios")
+                </label>
+                <br />
+                <label class="radio-inline">
+                    Lider de grupo pequeno(Celula)
+                    @Html.RadioButtonFor(d => d.FuncionesOcupadaActural_DE, "Lider de grupo pequeno(Celula)")
+                </label>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.MinisteriosAnteriores_DE)
+                @Html.TextAreaFor(d => d.MinisteriosAnteriores_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.MinisteriosMayorFruto_DE)
+                @Html.TextAreaFor(d => d.MinisteriosMayorFruto_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.MinisteriosMayorFrutoPorque_DE)
+                @Html.TextAreaFor(d => d.MinisteriosMayorFrutoPorque_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.MinisterioLlamado_DE)
+                @Html.TextAreaFor(d => d.MinisterioLlamado_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.MetasVida_DE)
+                @Html.TextAreaFor(d => d.MetasVida_DE, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.RespaldoIglesia_DE)
+                <br />
+                Si
+                @Html.RadioButtonFor(d => d.RespaldoIglesia_DE, "Si")
+                No
+                @Html.RadioButtonFor(d => d.RespaldoIglesia_DE, "No")
+            </div>
+        </div>
+
+        <div class="tab">
+            <div>
+                <h3>Datos Academicos</h3>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.NivelEstudio_DA)
+                @Html.DropDownListFor(d => d.NivelEstudio_DA, Model.NivelAcdemico, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.VezEspulsado_DA)
+                <br />
+                Si
+                @Html.RadioButtonFor(d => d.VezEspulsado_DA, "Si")
+                No
+                @Html.RadioButtonFor(d => d.VezEspulsado_DA, "No")
+            </div>
+            <div id="divEspulsado">
+                <div class="form-group">
+                    @Html.LabelFor(d => d.VezEspulsadoPorque_DA)
+                    @Html.TextAreaFor(d => d.VezEspulsadoPorque_DA, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div style="overflow:auto;">
+            <div style="float:right;">
+                <button class="btn btn-warning" type="button" id="prevBtn" onclick="nextPrev(-1)">Atras</button>
+                <button class="btn btn-success" type="button" id="nextBtn" onclick="nextPrev(1)">Siguente</button>
+            </div>
+        </div>
+
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+
+    }
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="~/Scripts/Create.js"></script>
+    <script src="~/Scripts/jquerymask.js"></script>
+    <script>
+        $('#Celular_DP').mask('000-000-0000');
+        $('#Telefono_DP').mask('000-000-0000');
+        $('#DocumentoIdentidad_DP').mask('000000000000');
+        $('#NoHijos_DF').mask('00');
+        $('#EmpresaTelefono_DL').mask('000-000-0000');
+        $('#DisciplinaVeces_DE').mask('00');
+
+
+        $(function () {
+            $("input[name='VezEspulsado_DA']").click(function () {
+                if ($("#VezEspulsado_DA").is(":checked")) {
+                    $("#divEspulsado").show();
+                } else {
+                    $("#divEspulsado").hide();
+                }
+            });
+        });
+
+
+        $(function () {
+            $("input[name='EstadoCivil_DF']").click(function () {
+                if ($("#EstadoCivil_DF").is(":checked")) {
+                    $("#divPareja").show();
+                } else {
+                    $("#divPareja").hide();
+                }
+            });
+        });
+
+
+        $(function () {
+            $("input[name='EstadoCivil_DF']").click(function () {
+                if ($("#EstadoCivil_DF").is(":checked")) {
+                    $("#divPareja").show();
+                } else {
+                    $("#divPareja").hide();
+                }
+            });
+        });
+
+        $(function () {
+            $("input[name='SidoDisciplenado_DE']").click(function () {
+                if ($("#SidoDisciplenado_DE").is(":checked")) {
+                    $("#divDiciplina").show();
+                } else {
+                    $("#divDiciplina").hide();
+                }
+            });
+        });
+
+
+
+
+        $(function () {
+            $("input[name='IglesiaMenorTiempo_DE']").click(function () {
+                if ($("#IglesiaMenorTiempo_DE").is(":checked")) {
+                    $("#divIglesiaAntes").show();
+                } else {
+                    $("#divIglesiaAntes").hide();
+                }
+            });
+        });
+
+
+
+
+        $(document).ready(function () {
+            $("#divPareja").hide();
+            $("#divIglesiaAntes").hide();
+            $("#divNoHijos").hide();
+            $("#divDiciplina").hide();
+            $("#divEspulsado").hide();
+
+        });
+
+        $(function () {
+            $("input[name='Hijos_DF']").click(function () {
+                if ($("#Hijos_DF").is(":checked")) {
+                    $("#divNoHijos").show();
+                } else {
+                    $("#divNoHijos").hide();
+                }
+            });
+        });
+
+
+
+
+
+    </script>
+
+}

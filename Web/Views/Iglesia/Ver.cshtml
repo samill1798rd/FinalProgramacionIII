@@ -1,0 +1,89 @@
+﻿@model Web.Models.ViewModel.IglesiaViewModel
+@{
+    ViewBag.Title = "Ver";
+}
+
+
+<h2>Detalles</h2>
+
+<br />
+<CENTER><img src='@Url.Action("ConvertImagen","Iglesia", new { id= Model.Id_Iglesia  })' width='200px' height='200px'></CENTER>
+<br>
+
+<div class='container'>
+    <h3>Datos Personales:</h3>
+    <ul class='list-group'>
+        <li class='list-group-item'><strong>Sexo : </strong>@Html.DisplayFor(t => t.Sexo_DP)</li>
+        <li class='list-group-item'><strong>Apellidos : </strong>@Html.DisplayFor(t => t.Apellidos_DP) </li>
+        <li class='list-group-item'><strong>Nombres : </strong>@Html.DisplayFor(t => t.Nombres_DP)</li>
+        <li class='list-group-item'><strong>Fecha de Nacimiento : </strong>@Html.DisplayFor(t => t.FechaNacimiento_DP)</li>
+        <li class='list-group-item'><strong>Pais de Nacimiento : </strong>@Html.DisplayFor(t => t.VerPaisN)</li>
+        <li class='list-group-item'><strong>Ciudad de Nacimiento : </strong>@Html.DisplayFor(t => t.CiudadNacimiento_DP)</li>
+        <li class='list-group-item'><strong>Pais de Residencia Actual : </strong>@Html.DisplayFor(t => t.VerPaisR)</li>
+        <li class='list-group-item'><strong>Ciudad de Residencia Actual : </strong>@Html.DisplayFor(t => t.CiudadResidneciaActual_DP)</li>
+        <li class='list-group-item'><strong>Direccion : </strong>@Html.DisplayFor(t => t.Direccion_DP)</li>
+        <li class='list-group-item'><strong>Telefono : </strong>@Html.DisplayFor(t => t.Telefono_DP)</li>
+        <li class='list-group-item'><strong>Celular : </strong>@Html.DisplayFor(t => t.Celular_DP)</li>
+        <li class='list-group-item'><strong>Correo Electronico : </strong>@Html.DisplayFor(t => t.Correo_DP)</li>
+        <li class='list-group-item'><strong>Tipo de Documento de Identidad : </strong>@Html.DisplayFor(t => t.TipoIdentidad_DP)</li>
+        <li class='list-group-item'><strong>Documento de Identidad : </strong>@Html.DisplayFor(t => t.DocumentoIdentidad_DP)</li>
+    </ul>
+</div>
+<br>
+<h3>Datos Familiares:</h3>
+<div class='container'>
+    <ul class='list-group'>
+        <li class='list-group-item'><strong>Estado Civil : </strong>@Html.DisplayFor(t => t.EstadoCivil_DF)</li>
+        @if (Model.EstadoCivil_DF == "Casado")
+        {
+            <li class='list-group-item'><strong>Nombre Esposo(a) : </strong>@Html.DisplayFor(t => t.NombrePareja_DF) </li>
+        }
+        <li class='list-group-item'><strong>Tiene Hijos : </strong>@Html.DisplayFor(t => t.Hijos_DF) </li>
+        @if (Model.Hijos_DF == "Si")
+        {
+            <li class='list-group-item'><strong>No Hijos : </strong>@Html.DisplayFor(t => t.NoHijos_DF) </li>
+        }
+    </ul>
+</div>
+<br>
+<h3>Datos Eclesiasticos:</h3>
+<div class='container'>
+    <ul class='list-group'>
+        <li class='list-group-item'><strong>Fecha de Convension : </strong>@Html.DisplayFor(t => t.FechaConvencion_DE)</li>
+        <li class='list-group-item'><strong>Fecha de Bautismo : </strong>@Html.DisplayFor(t => t.FechaBautismo_DE)</li>
+        <li class='list-group-item'><strong>Fecha en que fue aceptado(a) como miembro : </strong>@Html.DisplayFor(t => t.FechaAceptado_DE)</li>
+        <li class='list-group-item'><strong>Denominaccion a la que pertenece : </strong>@Html.DisplayFor(t => t.Denominacion_DE)</li>
+        <li class='list-group-item'><strong>Nombre de la Iglesia a la que asiste actualmente : </strong>@Html.DisplayFor(t => t.NombreIglesiaActual_DE)</li>
+        <li class='list-group-item'><strong>Asiste esta Iglesia por tiempo menor a un year : </strong>@Html.DisplayFor(t => t.IglesiaMenorTiempo_DE)</li>
+        @if (Model.IglesiaMenorTiempo_DE == "Si")
+        {
+            <li class='list-group-item'><strong>Donde se congregaba antes : </strong>@Html.DisplayFor(t => t.IglesiaAnterior_DE) </li>
+        }
+        <li class='list-group-item'><strong>Nombre del pastor de sus Iglesia Actual : </strong>@Html.DisplayFor(t => t.PastorActual_DE) </li>
+        <li class='list-group-item'><strong>Ha sido disciplinado alguna vez : </strong>@Html.DisplayFor(t => t.SidoDisciplenado_DE) </li>
+        @if (Model.SidoDisciplenado_DE == "Si")
+        {
+            <li class='list-group-item'><strong>Veces disciplinado: </strong>@Html.DisplayFor(t => t.DisciplinaVeces_DE) </li>
+            <li class='list-group-item'><strong>Causas de la disciplina: </strong>@Html.DisplayFor(t => t.DisciplinaCausas_DE) </li>
+        }
+        <li class='list-group-item'><strong>Funcion que ocupa en la actualidad : </strong>@Html.DisplayFor(t => t.FuncionesOcupadaActural_DE) </li>
+        <li class='list-group-item'><strong>Ministerios que Ha servido : </strong>@Html.DisplayFor(t => t.MinisteriosAnteriores_DE) </li>
+        <li class='list-group-item'><strong>Ministerios de mayor fruto : </strong>@Html.DisplayFor(t => t.MinisteriosMayorFruto_DE) </li>
+        <li class='list-group-item'><strong>Porque : </strong>@Html.DisplayFor(t => t.MinisteriosMayorFrutoPorque_DE) </li>
+        <li class='list-group-item'><strong>Metas en la vida : </strong>@Html.DisplayFor(t => t.MetasVida_DE) </li>
+        <li class='list-group-item'><strong>Cuenta con el respaldo de su congregacion : </strong>@Html.DisplayFor(t => t.RespaldoIglesia_DE) </li>
+    </ul>
+</div>
+<br>
+<h3>Datos Academicos:</h3>
+<div class='container'>
+    <ul class='list-group'>
+        <li class='list-group-item'><strong>Nivel de estudio : </strong>@Html.DisplayFor(t => t.NivelEstudio_DA)</li>
+        <li class='list-group-item'><strong>Alguna vez fue expulsado o suspendido de alguna institucion : </strong>@Html.DisplayFor(t => t.VezEspulsado_DA)</li>
+        @if (Model.VezEspulsado_DA == "Si")
+        {
+            <li class='list-group-item'><strong>Porque Razon : </strong>@Html.DisplayFor(t => t.VezEspulsadoPorque_DA) </li>
+        }
+    </ul>
+</div>
+
